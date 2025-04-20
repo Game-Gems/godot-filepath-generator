@@ -1,22 +1,31 @@
 @tool
 extends EditorPlugin
 
+## This is how often the project is scanned for changes (in seconds)
 const GENERATION_FREQUENCY := 5.0
 
+## The addons directory is excluded by default
 const ADDONS_PATH := "res://addons"
+
+## The plugin name is used to create the output directory
 const PLUGIN_NAME := "filepath_generator"
+
+## The class name that will be generated
 const GENERATED_CLASS_NAME := "ProjectFiles"
 
-const DEBUG := true
+## Print debug messages
+const DEBUG := false
 
+## Paths that should be excluded from generation
 const EXCLUDED_PATHS: Array[String] = [
 	ADDONS_PATH,
 ]
 
+## Generated classnames to file extensions
 const FILETYPES_TO_EXTENSIONS: Dictionary[String, Array] = {
 	"Scripts": ["gd"],
-	"Scenes": ["tscn"],
-	"Resources": ["tres"],
+	"Scenes": ["tscn", "scn"],
+	"Resources": ["tres", "res"],
 	"Images": ["png", "jpg", "jpeg", "gif", "bmp"],
 	"Audio": ["wav", "ogg", "mp3"],
 	"Fonts": ["ttf", "otf"],
