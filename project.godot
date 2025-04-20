@@ -13,7 +13,7 @@ config_version=5
 config/name="Filepath Generator"
 config/tags=PackedStringArray("addon")
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://media/logo.png"
 
 [editor_plugins]
 
