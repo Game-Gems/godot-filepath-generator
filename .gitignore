@@ -1,3 +1,5 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+addons/filepath_generator/project_files.*
+media/*.pxd
