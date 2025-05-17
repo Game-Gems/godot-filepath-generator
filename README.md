@@ -1,17 +1,31 @@
-# <img src="media/logo.png" width="48" height="48"> Godot Filepath Generator
+# <img src="media/logo.png" width="48" height="48"> Godot Const Generator
 
 ## About
-Filepath Generator generates a GDScript file with constants for `res://` paths to all relevant files in your project, so that in your code you use `ProjectFiles.Scenes.ENEMY` instead of `"res://scenes/enemy/enemy.tscn"`.
+
+Const Generator generates GDScript files with constants for many things that are usually accessed by plain strings:
+
+- `res://` paths to all relevant files in your project as a `ProjectFiles` class
+- Scene tree groups as a `Groups` class
+- Input actions as an `InputActions` class
+- Physics/render/navigation/avoidance layers as `Physics/Render/Navigation2D/3D` and `Avoidance` classes
+
+So that in your code you use:
+
+- `ProjectFiles.Scenes.ENEMY` instead of `"res://scenes/enemy/enemy.tscn"`
+- `node.is_in_group(Groups.PLAYER)` instead of `node.is_in_group("player")`
+- `node.set_collision_layer_value(Physics2D.Layer.COINS, true)` instead of `node.set_collision_layer_value(2, true)`
 
 ### Benefits:
+
 - Moving files won't break your project or add irrelevant changes to your diffs/commits.
 - Illegal reference errors are prevented at build/dev time, since you reference constants and not arbitrary strings.
 
-### Configurable (in `addons/filepath_generator/filepath_generator.gd`):
+### Configurable (in `addons/const_generator/const_generator.gd`):
+
 - Project scan frequency (default: every 5 seconds).
-- Name/location of the generated file (default: `addons/filepath_generator/project_files.gd`).
+- Name/location of the generated file (default: `addons/const_generator/project_files.gd`).
 - Generated class' names and file extensions they're mapped to.
-- Files/directories can be excluded from output (default: the `addons` directory)
+- Files/directories can be excluded from scanning (default: the `addons` directory)
 
 ## Example
 

@@ -8,7 +8,7 @@ const GENERATION_FREQUENCY := 5.0
 const ADDONS_PATH := "res://addons"
 
 ## The plugin name is used to create the output directory
-const PLUGIN_NAME := "filepath_generator"
+const PLUGIN_NAME := "const_generator"
 
 ## The class name that will be generated
 const GENERATED_CLASS_NAME := "ProjectFiles"
@@ -20,7 +20,7 @@ const DEBUG := false
 const EXCLUDED_PATHS: Array[String] = [
 	ADDONS_PATH,
 	"res://export",
-	"res://temp"
+	"res://tmp"
 ]
 
 ## Generated classnames to file extensions
@@ -85,7 +85,7 @@ func on_settings_changed():
 
 
 func save_input_actions_class(project_settings: ConfigFile):
-	var custom_actions: PackedStringArray = project_settings.get_section_keys("input") if project_settings.has_section("input") else []
+	var custom_actions: PackedStringArray = project_settings.get_section_keys("input") if project_settings.has_section("input") else PackedStringArray()
 	if persisted_actions == custom_actions:
 		return
 
@@ -97,7 +97,7 @@ func save_input_actions_class(project_settings: ConfigFile):
 	persisted_actions = custom_actions
 
 func save_groups_class(project_settings: ConfigFile):
-	var groups: PackedStringArray = project_settings.get_section_keys("global_group") if project_settings.has_section("global_group") else []
+	var groups: PackedStringArray = project_settings.get_section_keys("global_group") if project_settings.has_section("global_group") else PackedStringArray()
 	if persisted_groups == groups:
 		return
 
@@ -106,7 +106,7 @@ func save_groups_class(project_settings: ConfigFile):
 	persisted_groups = groups
 
 func save_layers_enum(project_settings: ConfigFile, classname: String, layer_prefix: String):
-	var layer_names: PackedStringArray = project_settings.get_section_keys("layer_names") if project_settings.has_section("layer_names") else []
+	var layer_names: PackedStringArray = project_settings.get_section_keys("layer_names") if project_settings.has_section("layer_names") else PackedStringArray()
 
 	var found := false
 	for layer in layer_names: if layer.begins_with(layer_prefix):
