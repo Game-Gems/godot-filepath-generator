@@ -1,17 +1,15 @@
-# <img src="media/logo.png" width="48" height="48"> Godot Const Generator
-
-## About
+# <img src="media/logo.png" width="48" height="48"> About
 
 Const Generator generates GDScript files with constants for many things that are usually accessed by plain strings:
 
-- `res://` paths to all relevant files in your project as a `ProjectFiles` class
-- Scene tree groups as a `Groups` class
-- Input actions as an `InputActions` class
-- Physics/render/navigation/avoidance layers as `Physics/Render/Navigation2D/3D` and `Avoidance` classes
+- `ProjectFiles` class: `res://` paths to all relevant files in your project
+- `Groups` class: scene tree groups
+- `InputActions` class: input actions
+- `Physics/Render/Navigation2D(3D)` and `Avoidance` classes: physics/render/navigation/avoidance layers
 
 So that in your code you use:
 
-- `ProjectFiles.Scenes.ENEMY` instead of `"res://scenes/enemy/enemy.tscn"`
+- `preload(ProjectFiles.Scenes.ENEMY)` instead of `preload("res://scenes/enemy/enemy.tscn")`
 - `node.is_in_group(Groups.PLAYER)` instead of `node.is_in_group("player")`
 - `node.set_collision_layer_value(Physics2D.Layer.COINS, true)` instead of `node.set_collision_layer_value(2, true)`
 
@@ -20,10 +18,11 @@ So that in your code you use:
 - Moving files won't break your project or add irrelevant changes to your diffs/commits.
 - Illegal reference errors are prevented at build/dev time, since you reference constants and not arbitrary strings.
 
-### Configurable (in `addons/const_generator/const_generator.gd`):
+### Configurable (in `addons/const_generator/const_generator.gd`)
+
+Pretty much everything can be configured by changing the code:
 
 - Project scan frequency (default: every 5 seconds).
-- Name/location of the generated file (default: `addons/const_generator/project_files.gd`).
 - Generated class' names and file extensions they're mapped to.
 - Files/directories can be excluded from scanning (default: the `addons` directory)
 
